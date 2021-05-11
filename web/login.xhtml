@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <h:head>
+        <title>CRUD</title>
+    </h:head>
+    <h:body>
+        <h:form >
+            <p:growl id="miMsg" showDetail="true" sticky="true"/>
+
+            <p:panel id="iniciar" header="LOGIN">
+                <h:panelGrid columns="2" cellpadding="1">
+
+                    <p:outputLabel id="lblNombre" for="txtNombre" value="Nombre" />
+                    <p:inputText id="txtNombre" value="#{loginBean.cuenta.nombre}" />        
+
+                    <p:outputLabel id="lblPassword" for="txtPassword" value="Password" />
+                    <p:inputText id="txtPassword" value="#{loginBean.cuenta.password}" /> 
+
+                </h:panelGrid>
+                <br/>
+                <p:commandButton value="Ingresar" action="#{loginBean.buscar()}" update="iniciar" />
+                <p:commandButton value="Registrar" onclick="registrar" update="@form" />
+            </p:panel> 
+
+            <br/>
+            <br/>
+
+            <p:panel id="registrar" header="REGISTRATE" visible="false" >
+                <h:panelGrid columns="2" cellpadding="1" >
+
+                    <p:outputLabel id="lblNombreR" for="txtNombreR" value="Nombre" />
+                    <p:inputText id="txtNombreR" value="#{loginBean.cuenta1.nombre}" />        
+
+                    <p:outputLabel id="lblPasswordR" for="usPassword" value="Password" />
+
+
+                    <p:password id="usPassword" value="#{loginBean.cuenta1.password}"
+                                required="true" placeholder="Password"
+                                requiredMessage="Error: enter your password"
+                                match="usPasswordConfirm"/>
+
+                    <p:outputLabel for="usPasswordConfirm" value="Repeat Password:"/>
+                    <p:password id="usPasswordConfirm" value="#{loginBean.cuenta1.password}"
+                                required="true" placeholder="Repeat Password"
+                                requiredMessage="Error: repeat your password"/>
+
+                </h:panelGrid>
+                <br/>
+                <p:commandButton value="Registrar" action="#{loginBean.insertar()}" update="registrar" />
+            </p:panel> 
+
+
+        </h:form>
+    </h:body>
+</html>

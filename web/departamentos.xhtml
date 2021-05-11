@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    
+    <h:head>
+        <title>CRUD</title>
+    </h:head>
+    <h:body>
+    <h:form >
+        <p:growl id="miMsg" showDetail="true" sticky="true"/>
+           <p:panel header="REGISTRO">
+                <h:panelGrid columns="2" cellpadding="1">
+                   
+                    <p:outputLabel id="lblClave" for="txtClave" value="Clave" />
+                    <p:inputText id="txtClave" value="#{departamentoBean.departamento.id}" />        
+                    
+                    <p:outputLabel id="lblNombre" for="txtNombre" value="Nombre" />
+                    <p:inputText id="txtNombre" value="#{departamentoBean.departamento.nombre}" /> 
+
+                </h:panelGrid>
+                
+                
+            </p:panel> 
+        <p:commandButton value="Ingresar" action="#{departamentoBean.insertar()}" update="@form" />
+        <p:commandButton value="Actualizar" action="#{departamentoBean.actualizar()}" update="@form" />
+        <p:commandButton value="Eliminar" action="#{departamentoBean.eliminar()}" update="@form" />
+        <p:commandButton value="Buscar" action="#{departamentoBean.buscarId()}" update="tblDepartamentos" />
+        <p:commandButton value="Listar" action="#{departamentoBean.listar()}" update="tblDepartamentos" />
+         <br/>
+         <br/>
+         <p:dataTable id="tblDepartamentos" var="tblDep" value="#{departamentoBean.lista}">
+                <p:column headerText="Id">
+                    <h:outputText value="#{tblDep.id}" />
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{tblDep.nombre}" />
+                </p:column>
+                
+            </p:dataTable>
+    </h:form>
+    </h:body>
+</html>
